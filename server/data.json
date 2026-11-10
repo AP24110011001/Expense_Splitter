@@ -1,0 +1,22 @@
+{
+  "participants": [
+    "Alice",
+    "Bob",
+    "Charlie"
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "description": "dinner",
+      "amount": 20,
+      "paidBy": "Alice",
+      "splitWith": [
+        "Alice",
+        "Bob",
+        "Charlie"
+      ],
+      "date": "11/10/2026"
+    }
+  ],
+  "nextExpenseId": 2
+}

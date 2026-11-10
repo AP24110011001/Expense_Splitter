@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Splitter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div class="header-titles">
+        <h1>💸 Expense Splitter</h1>
+        <p class="subtitle">Track shared costs and see exactly who pays whom</p>
+      </div>
+      <button id="resetBtn" class="btn btn-secondary" title="Reset all data to default">🔄 Reset All</button>
+    </header>
+
+    <!-- 1. PARTICIPANTS -->
+    <section class="card">
+      <div class="card-header">
+        <h2>1. Friends & Participants</h2>
+        <span id="participantCount" class="badge">0 Friends</span>
+      </div>
+      <div class="input-row">
+        <input type="text" id="personInput" placeholder="Enter friend's name (e.g. David)" />
+        <button id="addPersonBtn" class="btn btn-primary">+ Add Friend</button>
+      </div>
+      <div id="participantsList" class="tags-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- 2. ADD EXPENSE -->
+    <section class="card">
+      <h2>2. Add an Expense</h2>
+      <form id="expenseForm">
+        <div class="form-grid">
+          <div>
+            <label for="expenseDesc">Description</label>
+            <input type="text" id="expenseDesc" placeholder="e.g. Grocery run, Dinner" required />
+          </div>
+          <div>
+            <label for="expenseAmount">Amount ($)</label>
+            <input type="number" id="expenseAmount" step="0.01" min="0.01" placeholder="0.00" required />
+          </div>
+          <div>
+            <label for="paidBySelect">Paid By</label>
+            <select id="paidBySelect" required>
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+          <div class="btn-cell">
+            <button type="submit" class="btn btn-success">+ Add Expense</button>
+          </div>
+        </div>
+        <div class="split-participants-box">
+          <label>Split equally among (who shares this?):</label>
+          <div id="splitCheckboxes" class="checkbox-tags">
+            <!-- Dynamically populated checkboxes, checked by default -->
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- 3. BALANCES & TOTALS -->
+    <section class="card">
+      <h2>3. Group Overview</h2>
+      <div class="summary-stats">
+        <div class="stat-box">
+          <span class="stat-label">Total Group Expenses</span>
+          <span id="totalSpent" class="stat-value">$0.00</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Per-Person Fair Share</span>
+          <span id="fairShare" class="stat-value">$0.00</span>
+        </div>
+      </div>
+      <h3>Individual Balances</h3>
+      <div id="balancesList" class="balances-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- 4. WHO PAYS WHOM (SETTLEMENT PLAN) -->
+    <section class="card highlight-card">
+      <div class="card-header">
+        <h2>🤝 4. Settlement Plan (Who Pays Whom)</h2>
+      </div>
+      <p class="help-text">Minimal cash transactions needed to settle all debts:</p>
+      <div id="settlementsList" class="settlements-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- 5. EXPENSE HISTORY -->
+    <section class="card">
+      <div class="card-header">
+        <h2>5. Expense History</h2>
+        <span id="expenseCount" class="badge">0 Expenses</span>
+      </div>
+      <div id="expensesTableContainer">
+        <table class="expenses-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Paid By</th>
+              <th>Split With</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="expensesTableBody">
+            <!-- Rendered dynamically -->
+          </tbody>
+        </table>
+        <p id="noExpensesMsg" class="empty-state">No expenses added yet.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="/settle.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
